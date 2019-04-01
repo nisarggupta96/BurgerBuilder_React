@@ -10,5 +10,21 @@
 	padding: 5px;
 	margin: 5px;
 	width: 80px;
+	border: none;
+	border-radius: 5px;
 	outline: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+.BuildControl .MoreBtn {
+	background-color: cyan;
+}
+.BuildControl .LessBtn {
+	background-color: maroon;
+	color: white;
+}
+
+
+.BuildControl > div {
+	min-width: 70px;
 }

@@ -7,3 +7,15 @@
 	margin: auto;
 	padding: 10px 0;
 }
+
+.BuildControls .OrderButton {
+	width: 95%;
+	border: none;
+	padding: 15px;
+	color: white;
+	background-color: green;
+}
+
+.BuildControls .OrderButton[disabled] {
+	background-color: grey;
+}
