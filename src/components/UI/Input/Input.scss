@@ -17,5 +17,9 @@
 		&:focus {
 			background-color: lightgrey;
 		}
+		&.Invalid {
+			border: 1px solid red;
+			background-color: salmon;
+		}
 	}
 }
