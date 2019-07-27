@@ -25,17 +25,11 @@ export const setIngredients = (ingredients) => {
 export const fetchIngredientsFailed = () => {
     return {
         type: actionTypes.FETCH_INGREDIENTS_FAILED
-    }
+    };
 }
 
 export const initIngredients = () => {
-    return dispatch => {
-        axios.get('https://burgerbuilderudemy.firebaseio.com/ingredients.json')
-            .then( response => {
-                dispatch(setIngredients(response.data));
-            })
-            .catch(error => {
-                dispatch(fetchIngredientsFailed());
-            });
-    }
+    return {
+        type: actionTypes.INIT_INGREDIENTS
+    };
 };
