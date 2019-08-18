@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
 
-class Checkout extends Component {
+const checkout = props => {
 
 	/*state = {
 		ingredients : null,
@@ -26,34 +26,32 @@ class Checkout extends Component {
 		this.setState({ingredients: ingredients, totalPrice: price});
 	}*/
 
-	checkoutCancel = () => {
-		this.props.history.goBack();
+	const checkoutCancel = () => {
+		props.history.goBack();
 		// goes back to last page
 	}
 
-	checkoutContinue = () => {
-		this.props.history.replace('/checkout/contact-data');
+	const checkoutContinue = () => {
+		props.history.replace('/checkout/contact-data');
 	}
 
-	render () {
+	let summary = <Redirect to="/" />;
+	if (props.ings) {
+		const purchasedRedirect = props.purchased ? <Redirect to="/" /> : null;
+		summary = (
+			<div>
+				{purchasedRedirect}
+				<CheckoutSummary
+					ingredients={props.ings}
+					checkoutCancel={checkoutCancel}
+					checkoutContinue={checkoutContinue} />
+				<Route
+					path={props.match.path + '/contact-data'}
+					component={ContactData} />
+			</div>);
+	};
+	return summary;
 
-		let summary = <Redirect to="/"/>;
-		if(this.props.ings) {
-			const purchasedRedirect = this.props.purchased ? <Redirect to="/"/> : null;
-			summary = (
-				<div>
-					{purchasedRedirect}
-					<CheckoutSummary 
-						ingredients={this.props.ings}
-						checkoutCancel={this.checkoutCancel}
-						checkoutContinue={this.checkoutContinue}/>
-					<Route 
-						path={this.props.match.path + '/contact-data'} 
-						component={ContactData}/>
-				</div>);
-		};
-		return summary;
-	}
 }
 
 const mapStateToProps = state => {
@@ -64,4 +62,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(mapStateToProps)(checkout);
