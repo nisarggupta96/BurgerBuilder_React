@@ -13,7 +13,9 @@ import * as actions from '../../store/actions/index';
 
 const burgerBuilder = props => {
 
-	const [ordering, setOrdering] = useState(false)
+	const [ordering, setOrdering] = useState(false);
+
+	const { onInitIngredients } = props;
 
 	useEffect(() => {
 		// axios.get('https://burgerbuilderudemy.firebaseio.com/ingredients.json')
@@ -23,8 +25,8 @@ const burgerBuilder = props => {
 		// 	 .catch(error => {
 		// 	 	this.setState({error: true});
 		// 	 });
-		props.onInitIngredients();
-	}, []);
+		onInitIngredients();
+	}, [onInitIngredients]);
 
 	const updatePurchaseState = (ingredients) => {
 		const sumIng = Object.keys(ingredients)
